@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-Widget defultebuttom({
+Widget customButton({
   VoidCallback? press,
-  // required String name ,
   Color? color,
   Gradient? gradient,
-  required EdgeInsetsGeometry panding,
+  required EdgeInsetsGeometry padding,
   required BorderRadius border,
   required IconData icon,
 }) =>
@@ -14,7 +13,7 @@ Widget defultebuttom({
       child: Container(
         decoration: BoxDecoration(
             color: color, borderRadius: border, gradient: gradient),
-        padding: panding,
+        padding: padding,
         child: Icon(
           icon,
           color: Colors.white,

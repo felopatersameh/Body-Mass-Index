@@ -1,39 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-Widget inputNumber({
-  required var number,
-  required int maxvalue,
-  required int minvalue,
-  required String name,
-  required ValueChanged<int> valueChanged,
-}) =>
-    Padding(
+
+
+class NumberInputWidget extends StatelessWidget {
+  final int number;
+  final int maxvalue;
+  final int minvalue;
+  final String name;
+  final ValueChanged<int> valueChanged;
+
+  const NumberInputWidget({
+    Key? key,
+    required this.number,
+    required this.maxvalue,
+    required this.minvalue,
+    required this.name,
+    required this.valueChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
         children: [
-          Text(name,
-              style: const TextStyle(
-                  color: Colors.white, fontSize: 27, fontFamily: 'OldStandard')),
-          const SizedBox(
-            height: 10,
-          ),
+          Text(name, style: Theme.of(context).textTheme.bodyMedium),
+          const SizedBox(height: 10),
           NumberPicker(
-            selectedTextStyle:
-                const TextStyle(color: Colors.lime, fontSize: 23 , fontFamily: 'OldStandard', fontWeight: FontWeight.w200 ),
-            textStyle: const TextStyle( fontFamily: 'OldStandard', letterSpacing: 2,),
+            selectedTextStyle:Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 24),
+            textStyle: Theme.of(context).textTheme.bodyMedium,
             itemWidth: 50,
-            itemCount:5,
+            itemCount: 5,
             axis: Axis.horizontal,
             infiniteLoop: true,
             haptics: true,
-            decoration: BoxDecoration(border: Border.all(color: Colors.lime)),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.lime,width: 3),
+            ),
             onChanged: valueChanged,
-            minValue: 3,
+            minValue: minvalue, // Updated to use the minvalue variable
             maxValue: maxvalue,
             value: number,
-          )
+          ),
         ],
       ),
     );
-
+  }
+}

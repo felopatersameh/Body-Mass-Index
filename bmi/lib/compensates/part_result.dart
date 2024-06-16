@@ -1,75 +1,70 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bmi/constant.dart';
+import 'package:flutter/material.dart';
 
-Widget partResult(
-{
-  required String gender,
-  required String resultbmi ,
-  required String resulthealthy,
-}
+class BmiResultWidget extends StatelessWidget {
+  final String gender;
+  final String resultBmi;
+  final String resultHealthy;
 
-    ) => Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 50),
-  child: Row(
-    children: [
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+  const BmiResultWidget({
+    Key? key,
+    required this.gender,
+    required this.resultBmi,
+    required this.resultHealthy,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 25),
+      child: Row(
         children: [
-          const Text('Gender\n',
-              style: TextStyle(
-                  color:
-                  Color.fromRGBO(130, 34, 208, 1),
-                  fontFamily: 'OldStandard',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700)),
-          Text(gender,
-              style: const TextStyle(
-                color: Color.fromRGBO(4, 13, 137, 1),
-                fontFamily: 'OldStandard',
-                fontSize: 20,
-              )),
-        ],
-      ),
-      Expanded(
-        flex: 2,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(AppStrings.gender, style: Theme.of(context).textTheme.labelLarge),
+              const SizedBox(height: 30,),
               Text(
-                resulthealthy,
-                style: const TextStyle(
-                  color: Color.fromRGBO(4, 13, 137, 1),
-                  fontFamily: 'OldStandard',
-                  fontSize: 19,
-                ),
-                maxLines: 4,
+                gender,
+                style:  Theme.of(context).textTheme.labelMedium,
               ),
             ],
           ),
-        ),
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('Result\n',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color:
-                  Color.fromRGBO(130, 34, 208, 1),
-                  fontFamily: 'OldStandard',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700)),
-          Text( resultbmi,
-              style: const TextStyle(
-                color:
-                Color.fromRGBO(4, 13, 137, 1),
-                fontFamily: 'OldStandard',
-                fontSize: 20,
+          Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    resultHealthy,
+                    style:  Theme.of(context).textTheme.labelMedium,
+                    maxLines: 4,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              maxLines: 1),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               Text(
+                AppStrings.result,
+                textAlign: TextAlign.center,
+                style:  Theme.of(context).textTheme.labelLarge
+              ),
+              const SizedBox(height: 30,),
+              Text(
+                resultBmi,
+                style: Theme.of(context).textTheme.labelMedium,
+                maxLines: 1,
+              ),
+            ],
+          ),
         ],
       ),
-    ],
-  ),
-);
+    );
+  }
+}

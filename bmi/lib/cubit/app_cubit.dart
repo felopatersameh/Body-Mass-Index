@@ -1,4 +1,4 @@
-import 'package:bmi/cubit/appstates.dart';
+import 'package:bmi/cubit/app_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -13,48 +13,48 @@ class AppCubit extends Cubit<AppStates> {
     emit(ChangeGenderApp());
   }
 
-  var oldnumberage = 18;
+  var numberAge = 18;
 
-  void changenumberage(var newnumber) {
-    oldnumberage = newnumber;
+  void changNumberAge(var newNumber) {
+    numberAge = newNumber;
     emit(ChangeAgeApp());
   }
 
-  var oldnumberhieght = 150;
-
-  void changenumberhieght(var newnumber) {
-    oldnumberhieght = newnumber;
+  var numberHeight = 150;
+// width , height
+  void changeNumberHeight(var newNumber) {
+    numberHeight = newNumber;
     emit(ChangHieghtApp());
   }
 
-  var oldnumberwieght = 65;
+  var numberWidth = 65;
 
-  void changenumberwieght(var newnumber) {
-    oldnumberwieght = newnumber;
+  void changeNumberWidth(var newNumber) {
+    numberWidth = newNumber;
     emit(ChangewieghtApp());
   }
 
-  String healthBoody = '';
-  double calculatbmi = 0.0;
+  String healthBody = '';
+  double calculateResult = 0.0;
 
-  void calculaBodyMassIndex({
-    required var inputhieght,
-    required var inputage,
-    required var inputwieght,
+  void calculateBodyMassIndex({
+    required var inputHeight,
+    required var inputAge,
+    required var inputWidth,
   }) {
-    inputhieght = inputhieght / 100;
-    calculatbmi = ((inputwieght) /
-        (inputhieght * inputhieght)* (1 + 0.02 * (inputage - 20)));
-    if (calculatbmi  < 18.5) {
-      healthBoody = " Severe Thinness";
-    } else if (calculatbmi < 25) {
-      healthBoody = " Mild Thinness";
-    } else if (calculatbmi < 30) {
-      healthBoody = " Normal";
-    } else if (calculatbmi < 35) {
-      healthBoody = "Overweight";
+    inputHeight = inputHeight / 100;
+    calculateResult = ((inputWidth) /
+        (inputHeight * inputHeight)* (1 + 0.02 * (inputAge - 20)));
+    if (calculateResult  < 18.5) {
+      healthBody = " Severe Thinness";
+    } else if (calculateResult < 25) {
+      healthBody = " Mild Thinness";
+    } else if (calculateResult < 30) {
+      healthBody = " Normal";
+    } else if (calculateResult < 35) {
+      healthBody = "Overweight";
     }
-    calculatbmi =double.parse((calculatbmi).toStringAsFixed(2));
+    calculateResult =double.parse((calculateResult).toStringAsFixed(2));
     emit(CalculaBodyMassIndexApp());
   }
 }
